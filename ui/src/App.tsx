@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 type ChurnForm = {
   age: string;
@@ -8,9 +8,9 @@ type ChurnForm = {
 
 export default function App() {
   const [form, setForm] = useState<ChurnForm>({
-    age: '',
-    subscription_months: '',
-    login_freq: '',
+    age: "",
+    subscription_months: "",
+    login_freq: "",
   });
   const [result, setResult] = useState<number | null>(null);
 
@@ -20,9 +20,9 @@ export default function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:8000/predict_churn', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("http://localhost:8000/predict_churn", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         age: Number(form.age),
         subscription_months: Number(form.subscription_months),
@@ -39,17 +39,32 @@ export default function App() {
       <form onSubmit={handleSubmit}>
         <label>
           Age:
-          <input name="age" value={form.age} onChange={handleChange} type="number" />
+          <input
+            name="age"
+            value={form.age}
+            onChange={handleChange}
+            type="number"
+          />
         </label>
         <br />
         <label>
           Subscription Months:
-          <input name="subscription_months" value={form.subscription_months} onChange={handleChange} type="number" />
+          <input
+            name="subscription_months"
+            value={form.subscription_months}
+            onChange={handleChange}
+            type="number"
+          />
         </label>
         <br />
         <label>
           Login Frequency:
-          <input name="login_freq" value={form.login_freq} onChange={handleChange} type="number" />
+          <input
+            name="login_freq"
+            value={form.login_freq}
+            onChange={handleChange}
+            type="number"
+          />
         </label>
         <br />
         <button type="submit">Predict</button>
