@@ -20,7 +20,7 @@ export default function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8000/predict_churn", {
+    const response = await fetch("/api/predict_churn", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
