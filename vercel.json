@@ -4,6 +4,11 @@
     { "src": "ui/package.json", "use": "@vercel/static-build", "config": { "distDir": "build" } },
     { "src": "api/**/*.py", "use": "@vercel/python" }
   ],
+  "functions": {
+    "api/**/*.py": {
+      "includeFiles": "app/**"
+    }
+  },
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "handle": "filesystem" },
