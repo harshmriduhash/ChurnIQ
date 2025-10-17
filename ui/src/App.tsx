@@ -7,6 +7,7 @@ type ChurnForm = {
 };
 
 export default function App() {
+  const apiBaseUrl = (process.env.REACT_APP_API_BASE_URL || "http://localhost:8000").replace(/\/+$/, "");
   const [form, setForm] = useState<ChurnForm>({
     age: "",
     subscription_months: "",
@@ -20,7 +21,7 @@ export default function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8000/predict_churn", {
+    const response = await fetch(`${apiBaseUrl}/predict_churn`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
